@@ -4,10 +4,17 @@ const express = require('express');
 const morgan = require("morgan");
 const app = express();
 
+// console.log(`NODE_ENV:${process.env.NODE_ENV}`);
+// console.log(`app:${app.get('env')}`);
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static('public'));
 app.use(helmet());
+if(app.get('env') === 'dev'){
+  console.log(`app_Morgan enable:${app.get('env')}`);
+  console.log("Morgan is Enable.........")
+}
 app.use(morgan('tiny'));
 const genres = [
   { id: 1, name: 'Action' },  
