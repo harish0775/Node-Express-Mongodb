@@ -1,9 +1,14 @@
+const helmet = require("helmet");
 const Joi = require('joi');
 const express = require('express');
+const morgan = require("morgan");
 const app = express();
 
 app.use(express.json());
-
+app.use(express.urlencoded());
+app.use(express.static('public'));
+app.use(helmet());
+app.use(morgan('tiny'));
 const genres = [
   { id: 1, name: 'Action' },  
   { id: 2, name: 'Horror' },  
