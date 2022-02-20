@@ -1,3 +1,5 @@
+const config = require('config');
+
 const helmet = require("helmet");
 const Joi = require('joi');
 const express = require('express');
@@ -7,15 +9,23 @@ const app = express();
 // console.log(`NODE_ENV:${process.env.NODE_ENV}`);
 // console.log(`app:${app.get('env')}`);
 
+
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({
+    extended: true
+}));
 app.use(express.static('public'));
+
 app.use(helmet());
-if(app.get('env') === 'dev'){
-  console.log(`app_Morgan enable:${app.get('env')}`);
-  console.log("Morgan is Enable.........")
+console.log('Application Name :' + config.get('name'));
+console.log('Mail-Server :' + config.get('mail.host'));
+
+
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'));
+   console.log('Morgan enabled...');
 }
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 const genres = [
   { id: 1, name: 'Action' },  
   { id: 2, name: 'Horror' },  
