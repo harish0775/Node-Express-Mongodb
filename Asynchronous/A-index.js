@@ -6,15 +6,11 @@
 
 
 
-
 //   reject(new Error('Reject Error message'));
 // });
 
 // myPromise.then(result=>console.log("result",result))
 // .catch(err=>console.log("Err while Fatch",err.message));
-
-
-
 
 
 
