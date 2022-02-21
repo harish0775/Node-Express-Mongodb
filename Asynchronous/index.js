@@ -1,17 +1,28 @@
-//Callback
-//async Await
-//promises
+
 
 console.log("Before");
-getuser(1,function(user){
-    console.log(user);
-});
-function  getuser(id,Callback){
+
+ getuser(1,(user)=>{
+     console.log(user);
+     repo(user.githubUser,(repo)=>{
+         console.log("Repos",repo);
+     })
+ });
+
+function getuser(id,callback){  
+      console.log("Call User from db.......");
+
 setTimeout(() => {
-      console.log("User is Call from data base")
 
-        Callback({id : id  ,Username  :"harish0775"});
+    callback ({ id : id,githubUser: "Harish Nishad"});
+}, 4000);
 
-}, 2000);
 }
-console.log("Afer")
+//console.log("After");
+
+function repo(_username,callback){
+   console.log("Repositry is Fetching from Github");
+    setTimeout(() => {
+            callback(['repo1' , 'repo2' ,'repo3','repo4']);
+    }, 6000);
+}
