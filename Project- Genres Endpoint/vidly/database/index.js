@@ -11,16 +11,22 @@ const courseSchema = new mongoose.Schema({
    date : {type:Date,default:Date.now},
    ispublish : Boolean
 })
-const Course = mongoose.model('Course',courseSchema);
-async function createCouse(){
-    const course = new Course({
- name : 'Node Node.js Course',
- author : 'Harish Nishad',
- tag : ['Backend','Node.js'],
- ispublish : true
-})
+ const Course = mongoose.model('Course',courseSchema);
+// async function createCouse(){
+//     const course = new Course({
+//  name : 'Node Node.js Course new updated',
+//  author : 'Harish Nishad new updated',
+//  tag : ['Backend','Node.js new Update'],
+//  ispublish : true
+// })
 
-const result = await course.save();
-console.log('result',result);
+// const result = await course.save();
+// console.log('result',result);
+// }
+// createCouse();
+async  function getcourse(){
+   const getvale = await Course.find();
+   console.log('course',getvale);
 }
-createCouse();
+
+getcourse();
