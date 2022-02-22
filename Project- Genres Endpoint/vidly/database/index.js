@@ -24,30 +24,54 @@ const courseSchema = new mongoose.Schema({
 // console.log('result',result);
 // }
 // createCouse();
-async  function getcourse(){
-   //eq(equal)
-   //ne(not equal)
-   //gt(greater than)
-   //gte(grate than equal)
-   //lt(less than or equal to)
-   //in
-   //nin(not in)
-   const getvale = await Course
-//    .find({author :"Harish Nishad", ispublish :"true"})
-   //.find({pric : {$gte : 10,$lte:20}})   //select course less than of equal to 
- //  .find({price : {$in:[10,20,49]}}) //set couse 20 20 50 price
- //.or([{author : 'Harish Nishad'},{ispublish : true}])//Apply Logic Operator
- //.and([])
- .find({author : /^Harish/})  //author name start from harish
- .find({author : /Nishad$/i}) //author name end with Nishad need case insective use(  i ) 
- .find({author : /.*Harish.*/i})//author name anywhere with Harish
-   .limit(2)
-   .sort({name:1})
-   .count() //Count the Number of Document Match this Creatira.
-   .select({name :1,tag :1,author :"Harish Nishad", ispublish :"true"});//this select all
-   console.log('course',getvale);
-}
+// async  function getcourse(){
+//    //eq(equal)
+//    //ne(not equal)
+//    //gt(greater than)
+//    //gte(grate than equal)
+//    //lt(less than or equal to)
+//    //in
+//    //nin(not in)
+//    const getvale = await Course
+// //    .find({author :"Harish Nishad", ispublish :"true"})
+//    //.find({pric : {$gte : 10,$lte:20}})   //select course less than of equal to 
+//  //  .find({price : {$in:[10,20,49]}}) //set couse 20 20 50 price
+//  //.or([{author : 'Harish Nishad'},{ispublish : true}])//Apply Logic Operator
+//  //.and([])
+//  .find({author : /^Harish/})  //author name start from harish
+//  .find({author : /Nishad$/i}) //author name end with Nishad need case insective use(  i ) 
+//  .find({author : /.*Harish.*/i})//author name anywhere with Harish
+//    .limit(2)
+//    .sort({name:1})
+//    .count() //Count the Number of Document Match this Creatira.
+//    .select({name :1,tag :1,author :"Harish Nishad", ispublish :"true"});//this select all
+//    console.log('course',getvale);
+// }
 
-getcourse();
+// getcourse();
+
+
+//update Course
+
+async function updateCourse(id){
+    const course = await Course.findById(id);
+    if(!course) return;
+
+course.ispublish = true;
+course.author = 'Krishna Nishad';
+
+const result = await course.save();
+console.log(result);
+console.log("Couse is Update........")
+    }
+updateCourse('5a68fdc3615eda645bc6bdec');
+
+
+
+
+
+
+
+
 
 //mongoimport --db mongo-exercises --collection courses --drop --file exercise-data.json --jsonArray
