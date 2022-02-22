@@ -90,8 +90,11 @@ updateCourse('5a68fdc3615eda645bc6bdec'); //issue
 
 
 
+async function removeCourse(id){
+ //   const result = await Course.deleteOne({_id:id});  //or DeleteMany
+    const course = await Course.findByIdAndRemove(id);
+    console.log(course);
+}
 
-
-
-
+removeCourse('5a68fdc3615eda645bc6bdec');
 //mongoimport --db mongo-exercises --collection courses --drop --file exercise-data.json --jsonArray
