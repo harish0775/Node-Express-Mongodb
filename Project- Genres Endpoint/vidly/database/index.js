@@ -25,7 +25,10 @@ const courseSchema = new mongoose.Schema({
 // }
 // createCouse();
 async  function getcourse(){
-   const getvale = await Course.find();
+   const getvale = await Course.find({author :"Harish Nishad", ispublish :"true"})
+   .limit(2)
+   .sort({name:1})
+   .select({name :1,tag :1,author :"Harish Nishad", ispublish :"true"});//this select all
    console.log('course',getvale);
 }
 
