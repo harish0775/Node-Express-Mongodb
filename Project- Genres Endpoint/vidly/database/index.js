@@ -25,7 +25,17 @@ const courseSchema = new mongoose.Schema({
 // }
 // createCouse();
 async  function getcourse(){
-   const getvale = await Course.find({author :"Harish Nishad", ispublish :"true"})
+   //eq(equal)
+   //ne(not equal)
+   //gt(greater than)
+   //gte(grate than equal)
+   //lt(less than or equal to)
+   //in
+   //nin(not in)
+   const getvale = await Course
+//    .find({author :"Harish Nishad", ispublish :"true"})
+   //.find({pric : {$gte : 10,$lte:20}})   //select course less than of equal to 
+   .find({price : {$in:[10,20,49]}}) //set couse 20 20 50 price
    .limit(2)
    .sort({name:1})
    .select({name :1,tag :1,author :"Harish Nishad", ispublish :"true"});//this select all
