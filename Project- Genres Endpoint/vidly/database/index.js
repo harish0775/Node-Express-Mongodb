@@ -43,6 +43,7 @@ async  function getcourse(){
  .find({author : /.*Harish.*/i})//author name anywhere with Harish
    .limit(2)
    .sort({name:1})
+   .count() //Count the Number of Document Match this Creatira.
    .select({name :1,tag :1,author :"Harish Nishad", ispublish :"true"});//this select all
    console.log('course',getvale);
 }
