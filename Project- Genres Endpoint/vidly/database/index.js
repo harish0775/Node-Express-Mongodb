@@ -53,10 +53,32 @@ const courseSchema = new mongoose.Schema({
 
 //update Course
 
-async function updateCourse(id){
-    const course = await Course.findById(id);
-    if(!course) return;
+// async function updateCourse(id){
+//     const course = await Course.findById(id);
+//     if(!course) return;
+//  // if(course.ispublish) return; //use query first approach before update
+// course.ispublish = true;
+// course.author = 'Krishna Nishad';
 
+// const result = await course.save();
+// console.log(result);
+// console.log("Couse is Update........")
+//     }
+// updateCourse('5a68fdc3615eda645bc6bdec'); //issue
+
+
+async function updateCourse(id){
+    const course = await Course.update({_id:id} ,{ //ispublish:false  //findbyidAndUpdate   //
+   $set : {
+       author : "Haris Nishad",
+       ispublish : false
+   }
+    },{
+        new : true  //get update document
+    });
+    //more go mongo db operator
+    if(!course) return;
+ // if(course.ispublish) return; //use query first approach before update
 course.ispublish = true;
 course.author = 'Krishna Nishad';
 
@@ -64,9 +86,7 @@ const result = await course.save();
 console.log(result);
 console.log("Couse is Update........")
     }
-updateCourse('5a68fdc3615eda645bc6bdec');
-
-
+updateCourse('5a68fdc3615eda645bc6bdec'); //issue
 
 
 
