@@ -6,9 +6,19 @@ mongoose.connect('mongodb://localhost/ClassRoom').then(()=>console.log('Connect 
 const classroomSchema = new mongoose.Schema({
      title:  {
          type : String,
-         required : true
+         required : true,
+         minlength : 5,
+         maxlength : 15
+     },
+     Category : {
+         type : String,
+         enum : ['web','mobile','Network']
      },
      duration : String,
+      price : {
+         type: Number,
+         required : true
+     },
      tags : [String],
      author : String,
      ispublish : Boolean,
@@ -20,8 +30,10 @@ const Classroom = mongoose.model('Classroom',classroomSchema);
 
 async function createroom(){
  const room = new Classroom({
-       title : "Node.js",
+    // title : "Node.js",
+    Category : 'mobile',
   duration : '3 month',
+  price : 25,
   tags : ['Backend'],
   author : "Harish Nishad",
   ispublish : true
